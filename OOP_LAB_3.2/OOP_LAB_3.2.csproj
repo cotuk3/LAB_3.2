@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>OOP_LAB_3._2</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyConsoleMenu\MyConsoleMenu.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IConsoleMenu">
+      <HintPath>..\..\OOP_LAB_3_App\IConsoleMenu\bin\Debug\net6.0\IConsoleMenu.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

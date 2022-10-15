@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EntityService\EntityService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IConsoleMenu">
+      <HintPath>..\..\OOP_LAB_3_App\IConsoleMenu\bin\Debug\net6.0\IConsoleMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="People">
+      <HintPath>..\..\LAB_1GitHubDownload\People\bin\Debug\People.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

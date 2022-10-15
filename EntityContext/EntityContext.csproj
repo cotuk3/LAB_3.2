@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="OOP_LAB_3">
+      <HintPath>..\..\OOP_LAB_3_App\OOP_LAB_3\bin\Debug\net6.0\OOP_LAB_3.dll</HintPath>
+    </Reference>
+    <Reference Include="People">
+      <HintPath>..\..\LAB_1GitHubDownload\People\bin\Debug\People.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+	<ItemGroup>
+		<Using Include="People"/>
+	</ItemGroup>
+
+</Project>
