@@ -1,8 +1,2 @@
-﻿//using MyConsoleMenu;
+﻿new MyConsoleMenu.MyConsoleMenu().Start();
 
-new MyConsoleMenu.MyConsoleMenu().Start();
-
-/*
- * Watch task list,  
- * 
- */
