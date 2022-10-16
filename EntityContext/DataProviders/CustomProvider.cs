@@ -24,7 +24,15 @@ public class CustomProvider : DataProvider
         using (FileStream fileStream = File.OpenRead(filePath))
         {
             CustomSerializer cs = new CustomSerializer(_type, _genericArgumentType);
-            object obj = cs.Deserialize(fileStream);
+            object obj;
+            try
+            {
+                 obj = cs.Deserialize(fileStream);
+            }
+            catch
+            {
+                throw new System.Runtime.Serialization.SerializationException();
+            }
             return obj;
         }
 
