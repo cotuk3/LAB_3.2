@@ -110,7 +110,23 @@ public class InteractWithPerson
 	}
 	public void Add(List<Student> list)
 	{
-		if (File.Exists(_filePath)) File.Delete(_filePath);
+		if (File.Exists(_filePath))
+		{
+			List<Student> res;
+			try
+			{
+				res = deser[_extension](_filePath) as List<Student>;
+			}
+			catch
+			{
+                res = new List<Student>();
+            }
+			if (res == null)
+                res = new List<Student>();
+
+			foreach (var student in res)
+				list.Add(student);
+        }
 		ser[_extension](list, _filePath);
 	}
 	public bool Delete(int index) // DONE 8:25 p.m 14.10
@@ -126,6 +142,10 @@ public class InteractWithPerson
 		list.RemoveAt(index);
 		Add(list);
 		return true;
+	}
+	public bool Clear()
+	{
+		return DataProvider.ClearFile(_filePath);
 	}
 	#endregion
 
