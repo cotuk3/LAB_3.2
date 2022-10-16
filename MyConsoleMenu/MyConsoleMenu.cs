@@ -1,5 +1,6 @@
 ﻿using EntityService;
 using System.Collections;
+using System.Runtime.Serialization;
 
 namespace MyConsoleMenu;
 public class MyConsoleMenu : ConsoleMenu.ConsoleMenu
@@ -14,6 +15,7 @@ public class MyConsoleMenu : ConsoleMenu.ConsoleMenu
         commands.Add("/delete", () => Delete());
         commands.Add("/show", () => ShowAll());
         commands.Add("/search", () => Search());
+        commands.Add("/clear", () => ClearFile());
         commands.Add("/end", () => { Console.WriteLine("Bye, have a good time!"); Console.Read(); });
         commands.Add("/cls", () => { Console.Clear(); Info(); });
     }
@@ -34,28 +36,31 @@ public class MyConsoleMenu : ConsoleMenu.ConsoleMenu
                 {
                     switch (number)
                     {
-                        case 0:
-                            input = "/cls";
-                            break;
                         case 1:
-                            input = "/add";
+                            input = "/info";
                             break;
                         case 2:
-                            input = "/delete";
+                            input = "/add";
                             break;
                         case 3:
-                            input = "/search";
+                            input = "/delete";
                             break;
                         case 4:
                             input = "/show";
                             break;
                         case 5:
-                            input = "/info";
+                            input = "/search";
                             break;
                         case 6:
-                            input = "/end";
+                            input = "/clear";
                             break;
-                        case 11:
+                        case 7:
+                            input = "/cls";
+                            break;
+                        case 8:
+                            input = "end";
+                            break;
+                        case 21:
                             input = "/add def";
                             break;
                     }
@@ -67,22 +72,29 @@ public class MyConsoleMenu : ConsoleMenu.ConsoleMenu
                     Console.WriteLine("Unknow Command");
                 }
             }
+            catch (SerializationException)
+            {
+                Console.WriteLine("File is empty or not filled with students!");
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
         } while (input != "/end");
     }
     public override void Info()
     {
         string info = "***** Serialization 2.0 *****\n" +
-            "1./add\n" +
-            "\t1.1/add def\n" +
-            "2./delete\n" +
-            "3./search\n" +
+            "1./info\n" +
+            "2./add\n" +
+            "  2.1/add def\n" +
+            "3./delete\n" +
             "4./show\n" +
-            "5./info\n" +
-            "6./end\n";
+            "5./search\n" +
+            "6./clear\n" +
+            "7./cls\n" +
+            "8./end\n";
         Console.WriteLine(info);
     }
     #endregion
@@ -91,7 +103,7 @@ public class MyConsoleMenu : ConsoleMenu.ConsoleMenu
     private void Add(bool def = false)
     {
         InteractWithPerson iwp = new InteractWithPerson();
-       
+
         if (!AskForFilePath(ref iwp)) return;
 
         if (def)
@@ -227,7 +239,10 @@ public class MyConsoleMenu : ConsoleMenu.ConsoleMenu
         else
             iwp.FilePath = filePath;
 
-        Show(iwp.Search3CourseInDorm(iwp.FilePath));
+        var res = iwp.Search3CourseInDorm(iwp.FilePath);
+        Console.WriteLine($"There is {res.Count} who study in 3rd year and live in dorm: ");
+
+        Show(res);
     }
     #endregion
 
@@ -246,6 +261,14 @@ public class MyConsoleMenu : ConsoleMenu.ConsoleMenu
             file = iwp.SetFilePath(input);
         }
         return true;
+    }
+    public void ClearFile()
+    {
+        InteractWithPerson iwp = new InteractWithPerson();
+
+        if (!AskForFilePath(ref iwp)) return;
+
+        iwp.Clear();
     }
     #endregion
 }
