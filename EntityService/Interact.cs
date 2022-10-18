@@ -140,6 +140,7 @@ public class InteractWithPerson
 			return false;
 
 		list.RemoveAt(index);
+		File.Delete(_filePath);
 		Add(list);
 		return true;
 	}

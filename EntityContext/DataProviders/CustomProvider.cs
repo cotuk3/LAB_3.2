@@ -29,10 +29,12 @@ public class CustomProvider : DataProvider
             {
                  obj = cs.Deserialize(fileStream);
             }
-            catch
+            catch(Exception)
             {
                 throw new System.Runtime.Serialization.SerializationException();
             }
+            if(obj is null)
+                throw new System.Runtime.Serialization.SerializationException();
             return obj;
         }
 
